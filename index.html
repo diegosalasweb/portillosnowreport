@@ -28,7 +28,7 @@
       padding-bottom: 40px;
     }
 
-    /* Header Mobile First */
+    /* Header */
     header {
       background-color: var(--portillo-navy);
       color: #ffffff;
@@ -47,25 +47,17 @@
       align-items: center;
     }
 
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #fff;
+    .brand-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
     }
-
-    .sun-icon { flex-shrink: 0; }
 
     .header-btn {
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #fff;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: 600;
@@ -78,7 +70,7 @@
       padding: 0 16px;
     }
 
-    /* Controls Bar / Date Selector */
+    /* Controls Bar / Selector de Fechas */
     .controls-card {
       background: var(--portillo-navy);
       color: #ffffff;
@@ -86,28 +78,60 @@
       padding: 14px 20px;
       margin-bottom: 24px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+      gap: 16px;
       box-shadow: 0 4px 12px rgba(11, 29, 58, 0.15);
     }
 
-    .btn-reset {
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
+    .date-group {
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: opacity 0.2s;
+    }
+
+    .date-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .date-input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      outline: none;
+      color-scheme: dark;
+    }
+
+    .date-input:focus {
+      border-color: var(--portillo-yellow);
+    }
+
+    .btn-reset {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
     .btn-reset:hover {
-      opacity: 0.85;
-      color: var(--portillo-yellow);
+      background: var(--portillo-yellow);
+      color: var(--portillo-navy);
+      border-color: var(--portillo-yellow);
     }
 
     .titles-sec {
@@ -128,7 +152,7 @@
       font-weight: 400;
     }
 
-    /* KPI Cards Mobile 2x2 Grid */
+    /* KPI Cards Grid */
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -175,18 +199,17 @@
       color: var(--text-muted);
     }
 
-    /* Desktop Adjustments */
     @media (min-width: 768px) {
       .kpi-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
       }
       .page-title { font-size: 28px; }
-      .brand-logo { font-size: 22px; }
+      .brand-logo img { height: 38px; }
       .kpi-num { font-size: 34px; }
     }
 
-    /* Table Section Card */
+    /* Table Card */
     .card-box {
       background: var(--card-bg);
       border-radius: 14px;
@@ -257,15 +280,11 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header con Logo Oficial -->
   <header>
     <div class="header-container">
       <div class="brand-logo">
-        <svg class="sun-icon" viewBox="0 0 100 100" width="26" height="26" fill="#f8ad1d">
-          <circle cx="50" cy="50" r="20" />
-          <path d="M50 10 L50 0 M50 90 L50 100 M10 50 L0 50 M90 50 L100 50 M22 22 L15 15 M78 78 L85 85 M22 78 L15 85 M78 22 L85 15" stroke="#f8ad1d" stroke-width="8" stroke-linecap="round"/>
-        </svg>
-        <span>SKI PORTILLO</span>
+        <img src="https://skiportillo.com/wp-content/themes/ski-portillo-new/images/logo-top.svg" alt="Ski Portillo Logo">
       </div>
       <div class="header-btn">
         Reporte de Nieve
@@ -276,8 +295,18 @@
   <!-- Content -->
   <div class="main-container">
 
-    <!-- Selector / Restablecer Fechas -->
+    <!-- Selector de Fechas Completo -->
     <div class="controls-card">
+      <div class="date-group">
+        <label for="date-start">Desde:</label>
+        <input type="date" id="date-start" class="date-input" value="2026-07-11">
+      </div>
+
+      <div class="date-group">
+        <label for="date-end">Hasta:</label>
+        <input type="date" id="date-end" class="date-input" value="2026-07-25">
+      </div>
+
       <button class="btn-reset" id="reset-dates-btn">
         Restablecer Fechas
       </button>
@@ -288,7 +317,7 @@
       <p class="page-subtitle">Monitoreo de nieve caída • Temporada 2026</p>
     </div>
 
-    <!-- 2x2 Grid KPI en Mobile -->
+    <!-- 2x2 Grid KPI -->
     <div class="kpi-grid">
       <div class="kpi-card">
         <span class="kpi-title">Nieve Acumulada</span>
@@ -358,7 +387,7 @@
   </div>
 
   <footer>
-    &copy; 2026 Ski Portillo Chile • Monitoreo de Nieve. Por Diego Salas.
+    &copy; 2026 Ski Portillo Chile • Monitoreo de Nieve • Diego Salas
   </footer>
 
 </body>
